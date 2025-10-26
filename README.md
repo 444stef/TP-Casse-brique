@@ -40,4 +40,4 @@ Un jeu de **casse-brique classique** développé en Python utilisant la biblioth
 
 
 ### Répertoire GITHUB
-[GITHUB](https://e-campus.cpe.fr/) 
+[GITHUB](https://github.com/444stef/TP-Casse-brique/tree/main) 
