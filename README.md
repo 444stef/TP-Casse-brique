@@ -1,6 +1,6 @@
 # TP Casse-Brique - Projet TP 4, 5 et 6
 
-**Développé par :** Elise MUSTO et Stéfania NOUBOUA  
+**Développé par :** Elise MUSTO et Stéfania NOUBOUA  3ETI GRB
 **Année :** 2025  
 **Technologies :** Python - Tkinter  
 **Encodage :** UTF-8
