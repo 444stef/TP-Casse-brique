@@ -24,8 +24,11 @@ Un jeu de **casse-brique classique** développé en Python utilisant la biblioth
 |----------|--------|
 | Touche Flèche Gauche | Déplacement de la raquette vers la gauche |
 | Touche Flèche Droite | Déplacement de la raquette vers la droite |
-| Bouton START | Lancement d'une nouvelle partie |
+| Bouton START NEW | Lancement d'une nouvelle partie |
+| Bouton LAST GAME | Reprendre la dernière partie sauvegardée |
 | Bouton QUIT | Fermeture de l'application |
+| Bouton PAUSE/RESUME | Mettre en pause/reprendre le jeu |
+| Bouton RECENT SCORES| Affichier l'historique des scores |
 
 ## Système de Vies & Score
 
@@ -33,11 +36,27 @@ Un jeu de **casse-brique classique** développé en Python utilisant la biblioth
 - **3 vies initiales** représentées par des cœurs : ❤️ ❤️ ❤️
 - **Perte d'une vie** quand la balle touche le sol 
 - **Défaite** quand toutes les vies sont perdues
+- **Historique des scores** se sauvagarde dans un ficher json (scores.json)
 
 ### Score
 - **+1 point** par brique détruite 
 - **Affichage en temps réel** du score actuel
+- **Historique des scores** 
 
+
+## Spécificités de l'implémentation
+ **Class** : 
+- **Game** : Gestion globale du jeu(boucle principale, interface Tkinter, gestion des événements (victoire, défaite, sauvegarde), clavier et boutons)
+- **Paddle** : Gère la raquette avec ses mouvements, les vitesses, collisions avec la balle
+- **Ball** : Gère la balle : déplacement de la ball, les rebonds sur les murs et la raquette (Loi de Descartes)
+- **Brick** : Crée une brique 
+- **BrickManager** : Crée l'ensemble des briques (crée la grille), détruit la brique touchée, détecte collisions balle-brique
+
+
+## Structures des données utilisées 
+- **Liste** : Stocke l'ensemble des briques
+- **File** : sert à conserver les 5 derniers scores uniquement (le premier score ajouté et le premier supprimé)
+- **Pile** : sert à gérer les vies (le dernier coeur ajouté est le premier retiré)
 
 ### Répertoire GITHUB
 [GITHUB](https://github.com/444stef/TP-Casse-brique/tree/main) 
