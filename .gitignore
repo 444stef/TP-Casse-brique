@@ -1,0 +1,3 @@
+*.pyc           # Fichiers Python compilés (inutiles)
+__pycache__/    # Dossier cache Python
+*.json          # SAUVEGARDE en cours (temporaire) et historique local

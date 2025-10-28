@@ -64,8 +64,8 @@ class Paddle:
 
     def draw(self):
         """
-        -met à jour la position graphique de la raquette sur le canevas.
-        -la raquette est centrée autour de (self.x, self.y).
+        - met à jour la position graphique de la raquette sur le canevas.
+        - la raquette est centrée autour de (self.x, self.y).
         """
         #Calcule les coordonnées du coin supérieur gauche du rectangle
         x1 = self.x - self.width // 2
@@ -79,8 +79,8 @@ class Paddle:
 
     def move(self):
         """
-        -déplace la raquette selon sa vitesse actuelle.
-        -si elle touche un bord, on la bloque (elle ne sort pas de la zone de jeu).
+        - déplace la raquette selon sa vitesse actuelle.
+        - si elle touche un bord, on la bloque (elle ne sort pas de la zone de jeu).
         """
         #Nouvelle position calculée
         new_x = self.x + self.vel
@@ -97,14 +97,19 @@ class Paddle:
 
     def set_speed(self, v):
         """
-        -définit la vitesse de la raquette.
-        -Utilisée lorsqu'on appuie ou relâche les flèches du clavier.
-        -param v: vitesse souhaitée (positive = droite, négative = gauche)
+        - définit la vitesse de la raquette.
+        - utilisée lorsqu'on appuie ou relâche les flèches du clavier.
+        - param v: vitesse souhaitée (positive = droite, négative = gauche)
         """
         self.vel = v
 
 class Brick:
-    """brique unique"""
+    """
+    Brique unique définie par:
+    - position
+    - taille
+    - couleur
+    """
     def __init__(self, canvas, x, y, w, h, color, value):
         self.canvas = canvas
 
@@ -121,16 +126,17 @@ class Brick:
         self.id = self.canvas.create_rectangle(x, y, x + w, y + h, fill=color, outline='black')
 
     def destroy(self):
+        """détruit la brique si elle est encore en vie"""
         if self.alive:
             self.alive = False
             self.canvas.delete(self.id)
 
 class BricksManager:
     """
-    -crée la grille de briques
-    -détecte collisions balle-brique
-    -détruit la brique touchée
-    -renvoie True si une brique a été touchée
+    - crée la grille de briques
+    - détecte collisions balle-brique
+    - détruit la brique touchée
+    - renvoie True si une brique a été touchée
     """
     def __init__(self, canvas):
         self.canvas = canvas
@@ -153,8 +159,8 @@ class BricksManager:
     
     def collision(self, ball: 'Ball'):
         """
-        -vérifie si collision entre la balle et une des briques.
-        -retourne la brique touchée et la détruit, ou None si aucune.
+        - vérifie si collision entre la balle et une des briques.
+        - retourne la brique touchée et la détruit, ou None si aucune.
         """
         ball_left = ball.x - ball.radius
         ball_right = ball.x + ball.radius
@@ -201,9 +207,9 @@ class BricksManager:
 
 class Ball:
     """
-    -crée la balle sur le canevas Tkinter
-    -gère son mouvement (mettre à jour sa position à chaque frame)
-    -rebonds sur les murs et la raquette (loi de Descartes)
+    - crée la balle sur le canevas Tkinter
+    - gère son mouvement (mettre à jour sa position à chaque frame)
+    - rebonds sur les murs et la raquette (loi de Descartes)
     """
     def __init__(self, canvas, paddle, radius=RADIUS, color='white', speed=INIT_BALL_SPEED):
         self.canvas = canvas
@@ -239,10 +245,10 @@ class Ball:
     def handle_collisions(self, brick_manager):
         """
         Gestion des collisions:
-        -murs: inversion vx ou vy
-        -briques: inversion vx ou vy selon l'axe du contact
-        -raquette: inversion de vy
-        paramètres:
+        - murs: inversion vx ou vy
+        - briques: inversion vx ou vy selon l'axe du contact
+        - raquette: inversion de vy
+        - paramètres: brick_manager
         """
         #Murs
         if self.x - self.radius <= 0:  #mur gauche
@@ -277,10 +283,24 @@ class Ball:
     
 
 class Game:
-    def __init__(self, score_save = open('historique.txt','r')):
-        #charge l'historique de 5 derniers scores stoqué dans historique.txt
-        self.score_save = score_save.read()
-        self.historique = list(self.score_save) #implémentation d'une file
+    """
+    Classe principale du jeu:
+    - Création et gestion de l'interface Tkinter (fenêtre, canvas, boutons (=QUIT, START NEW...))
+    - Création de l'état du jeu (score, vie)
+    - Met à jour les élements du jeu : balle, raquette, brique, score et vies
+    - Gestion des déplacements de la raquette par le clavier
+    - Sauvegarde et restauration des parties (save.json) et gère l'historique des scores (historique.json)
+    """
+    def __init__(self):
+        #charge l'historique (liste) stocké dans historique.json. Si inexistant, on crée une liste vide
+        loaded = []
+        if os.path.exists("historique.json"):
+            with open("historique.json", "r", encoding="utf-8") as f:
+                data = json.load(f)
+                loaded = data
+
+        #implémentation d'une file deque pour garder automatiquement seulement les 5 derniers scores
+        self.historique = deque(loaded, maxlen=5)
 
         self.window = tk.Tk()
         self.window.title("Casse-Brique")
@@ -370,7 +390,7 @@ class Game:
     def continue_game(self):
         """Continue la partie sauvegardée (si elle existe)."""
         if os.path.exists("save.json"):
-            print("▶️ Partie reprise.")
+            print("Partie reprise.")
             self.load_state()
             self.start()
         else:
@@ -389,9 +409,9 @@ class Game:
 
     def end_game(self):
         """
-        -arrête le jeu en cas de victoire/défaite
-        -met à jour l'historique des scores
-        -efface la dernière sauvegarde car partie achevée
+        - arrête le jeu en cas de victoire/défaite
+        - met à jour l'historique des scores
+        - efface la dernière sauvegarde car partie achevée
         """
         self.running = False
 
@@ -399,10 +419,12 @@ class Game:
         self.pause_btn.pack_forget()
 
         self.historique.append(str(self.score))
-        if len(self.historique)>5:
-            self.historique.pop(0)
-        save=open('historique.txt','w')
-        save.write("".join(self.historique))
+
+        # sauvegarde de l'historique en JSON (liste)
+
+        with open("historique.json", 'w', encoding='utf-8') as f:
+            # convertir la file deque en liste pour json
+            json.dump(list(self.historique), f, ensure_ascii=False)
 
         if os.path.exists("save.json"):
             os.remove("save.json")
@@ -422,13 +444,14 @@ class Game:
         text = tk.Text(small_window, wrap='word', height=10, width=36)
         text.pack(fill='both', expand=True, padx=10, pady=(10, 5))
 
-        # remplir avec l'historique si disponible
+        # afficher l'historique (du plus ancien au plus récent)
         if self.historique:
-            # on affiche chaque élément sur une ligne
-            text.insert('end', "\n".join(self.historique))
+            lines = list(self.historique)
+            #une ligne pour chaque score
+            text.insert('end', "\n".join(lines))
         else:
             text.insert('end', "Aucun score enregistré.")
-
+    
         # rendre la zone non-editable
         text.config(state='disabled')
 
@@ -469,8 +492,8 @@ class Game:
             
     def quitter(self):
         """
-        -sauvegarde automatique du jeu si la partie n'est pas finie
-        -fermeture de la fenêtre
+        - sauvegarde automatique du jeu si la partie n'est pas finie
+        - fermeture de la fenêtre
         """
         if self.running or self.paused==True:
             self.save_state()
