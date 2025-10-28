@@ -5,10 +5,14 @@
 **Technologies :** Python - Tkinter  
 **Encodage :** UTF-8
 
+### Répertoire GITHUB
+[GITHUB](https://github.com/444stef/TP-Casse-brique)
 
 ## Description du Projet
 
 Un jeu de **casse-brique classique** développé en Python utilisant la bibliothèque **Tkinter** pour l'interface graphique. Le joueur contrôle une raquette pour faire rebondir une balle et détruire toutes les briques.
+
+
 
 
 ## Objectif du Jeu
@@ -24,7 +28,7 @@ Un jeu de **casse-brique classique** développé en Python utilisant la biblioth
 |----------|--------|
 | Touche Flèche Gauche | Déplacement de la raquette vers la gauche |
 | Touche Flèche Droite | Déplacement de la raquette vers la droite |
-| Bouton START NEW | Lancement d'une nouvelle partie |
+| Bouton START NEW  | Lancement d'une nouvelle partie |
 | Bouton LAST GAME | Reprendre la dernière partie sauvegardée |
 | Bouton QUIT | Fermeture de l'application |
 | Bouton PAUSE/RESUME | Mettre en pause/reprendre le jeu |
@@ -58,5 +62,7 @@ Un jeu de **casse-brique classique** développé en Python utilisant la biblioth
 - **File** : sert à conserver les 5 derniers scores uniquement (le premier score ajouté et le premier supprimé)
 - **Pile** : sert à gérer les vies (le dernier coeur ajouté est le premier retiré)
 
-### Répertoire GITHUB
-[GITHUB](https://github.com/444stef/TP-Casse-brique/tree/main) 
+
+  
+
+
