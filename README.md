@@ -32,7 +32,7 @@ Un jeu de **casse-brique classique** développé en Python utilisant la biblioth
 | Bouton LAST GAME | Reprendre la dernière partie sauvegardée |
 | Bouton QUIT | Fermeture de l'application |
 | Bouton PAUSE/RESUME | Mettre en pause/reprendre le jeu |
-| Bouton RECENT SCORES| Affichier l'historique des scores |
+| Bouton RECENT SCORES| Afficher l'historique des scores |
 
 ## Système de Vies & Score
 
@@ -40,7 +40,7 @@ Un jeu de **casse-brique classique** développé en Python utilisant la biblioth
 - **3 vies initiales** représentées par des cœurs : ❤️ ❤️ ❤️
 - **Perte d'une vie** quand la balle touche le sol 
 - **Défaite** quand toutes les vies sont perdues
-- **Historique des scores** se sauvagarde dans un ficher json (scores.json)
+- **Historique des scores** se sauvegarde dans un ficher json (scores.json)
 
 ### Score
 - **+1 point** par brique détruite 
