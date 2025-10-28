@@ -66,7 +66,7 @@ Un jeu de **casse-brique classique** développé en Python utilisant la biblioth
 ## Structure du fichier
 TP-Casse-brique/  
 ├── final_version.py # Script principal du jeu  
-├──  scores.json # Historique des 5 derniers scores  
+├── .gitignore 
 └── README.md # Documentation du projet
 
 
