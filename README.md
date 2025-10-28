@@ -63,6 +63,13 @@ Un jeu de **casse-brique classique** développé en Python utilisant la biblioth
 - **Pile** : sert à gérer les vies (le dernier coeur ajouté est le premier retiré)
 
 
+## Structure du fichier
+- TP-Casse-brique/
+├── final_version.py        # Script principal du jeu
+├── historique.txt          # Historique des 5 derniers scores
+└── README.md              # Documentation du projet
+
+
   
 
 
