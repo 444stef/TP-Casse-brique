@@ -64,10 +64,10 @@ Un jeu de **casse-brique classique** développé en Python utilisant la biblioth
 
 
 ## Structure du fichier
-- TP-Casse-brique/
-├── final_version.py        # Script principal du jeu
-├── historique.txt          # Historique des 5 derniers scores
-└── README.md              # Documentation du projet
+TP-Casse-brique/  
+├── final_version.py # Script principal du jeu  
+├──  scores.json # Historique des 5 derniers scores  
+└── README.md # Documentation du projet
 
 
   
